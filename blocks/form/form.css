@@ -66,7 +66,7 @@ main .form .field-description {
 
 main .form :is(input, textarea, select) {
   background-color: var(--form-input-background-color);
-  border: var(--form-input-border-size) solid var(--form-input-border-color);
+
   width: calc(100% - 16px);
   height: 42px;
   color: var(--form-label-color);
@@ -171,7 +171,7 @@ input::file-selector-button {
 
 main .form button {
   color: var(--form-button-color);
-  background: var(--form-button-background-color);
+  background: blanchedalmond;
   border: var(--form-button-border);
   padding: var(--form-button-padding);
   font-size: var(--form-button-font-size);
