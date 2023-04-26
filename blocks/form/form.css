@@ -48,10 +48,6 @@ main .form {
   background-color: var(--form-background-color);
 }
 
-main .form form {
-  display: grid;
-  grid-template-columns: repeat(var(--form-columns), 1fr);
-}
 
 main .form form fieldset {
   border: var(--form-fieldset-border);
