@@ -1,7 +1,9 @@
 function constructPayload(form) {
   const payload = {};
   [...form.elements].forEach((fe) => {
-    if (fe.type === "checkbox") {
+    if ( fe.type === "radio") {
+        if (fe.checked) payload[fe.name] = fe.value;
+    } else if (fe.type === "checkbox") {
       if (fe.checked) payload[fe.name] = payload[fe.name] ? `${payload[fe.name]},${fe.value}`: fe.value
     } else if (fe.name) {
       payload[fe.name] = fe.value;
