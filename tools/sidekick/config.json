@@ -1,0 +1,10 @@
+{
+    "plugins": [
+      {
+        "id": "form-editor",
+        "title": "Form Editor",
+        "event": "editform",
+        "environments": ["preview"]
+      }
+    ]
+  }
