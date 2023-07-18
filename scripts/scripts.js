@@ -156,6 +156,6 @@ if (sk) {
   // wait for sidekick to be loaded
   document.addEventListener('sidekick-ready', () => {
     document.querySelector('helix-sidekick')
-      .addEventListener('custom:forms', openEditor);
+      .addEventListener('custom:editform', openEditor);
   }, { once: true });
 }
