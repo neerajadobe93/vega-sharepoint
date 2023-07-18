@@ -127,7 +127,7 @@ loadPage();
 
 const openEditor = async (event) => {
   const imsOrgId = "@formsinternal01";
-  const currentPageUrl = window.location.href;
+  const currentPageUrl = window.location.href.replace(/^https?:\/\//i, "");
   const editorUrl = `https://experience.adobe.com/#/${imsOrgId}/aem/editor/canvas/${currentPageUrl}`;
 
   try {
