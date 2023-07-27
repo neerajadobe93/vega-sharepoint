@@ -5,12 +5,6 @@
         "title": "Form Editor",
         "event": "editform",
         "environments": ["preview"]
-      },
-       {
-        "id": "form-create",
-        "title": "Create Form",
-        "url": "/tools/sidekick/formbuilder.html"
-        "environments": ["edit"]
       }
     ]
   }
