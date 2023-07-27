@@ -9,7 +9,7 @@
       {
         "id": "form-create",
         "title": "Create Form",
-        "url": "/tools/sidekick/formbuilder.html"
+        "url": "/tools/sidekick/formbuilder.html",
         "environments": ["edit"]
       }
     ]
