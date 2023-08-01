@@ -11,7 +11,7 @@
     <input type="text" id="title" name="title" required>
     <br>
     <label for="formPath">Form Path:</label>
-    <input type="text" id="formPath" name="formPath" required>
+    <input type="text" id="formPath" name="formPath">
     <br>
     <button type="submit">Build Form</button>
   </form>
@@ -21,9 +21,13 @@
     <table id="generatedTable" border="1">
       <!-- Table content will be added here dynamically -->
     </table>
+    <div id="errorContainer">
+
+    </div>
     <button id="copyToClipboardBtn">Copy to Clipboard</button>
   </div>
 
+  <div class="spinner" id="spinner" style="display: none;"></div>
   <script src="script.js"></script>
 </body>
 </html>
