@@ -43,7 +43,6 @@ async function creteFormSheet(title, formPath) {
       },
       body: JSON.stringify({
         fileName: title,
-        data: "hello",
         parentFolderId: "1FXVZK1KrI7rEVUZ5kbCqSz4at-HHaYTI",
       }),
     });
