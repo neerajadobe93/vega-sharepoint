@@ -35,7 +35,7 @@ function displayError(error) {
 
 async function creteFormSheet(title, formPath) {
   try {
-    const response = await fetch(REMOTE_HOST_URL, {
+    const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
