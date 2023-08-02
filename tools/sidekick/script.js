@@ -1,7 +1,11 @@
 const errorContainer = document.getElementById("errorContainer");
 const tableContainer = document.getElementById("tableContainer");
 const spinner = document.getElementById("spinner");
-
+const TOKEN = localStorage.getItem("accessToken") || "";
+const LOCAL_HOST_URL = "http://localhost:3001";
+const REMOTE_HOST_URL = window.Location.name.includes("localhost")
+  ? LOCAL_HOST_URL
+  : "http://no1010042040188.corp.adobe.com:3001";
 document
   .getElementById("formBuilderForm")
   .addEventListener("submit", function (event) {
@@ -31,12 +35,11 @@ function displayError(error) {
 
 async function creteFormSheet(title, formPath) {
   try {
-    const response = await fetch("http://localhost:3001/createform", {
+    const response = await fetch(REMOTE_HOST_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        accesstoken:
-          "ya29.a0AbVbY6PB0voea_ooNWdPYNTFj4Gli2m6J0E0sHVJa23UcKkGoRSJsXsjH5haXN-H79V68aFrDnJhd3c5Ov-3QKh70LNqqp9CQ3tKHc1TCmGWN4kaIpr6KFRJAMqjH1ZcQy_lZCLE_PpeDvzQxdAn-EaKLRyRaCgYKAT0SARISFQFWKvPlqyO1s2YmB9gEWO4Ap_YEIQ0163",
+        accesstoken: TOKEN,
       },
       body: JSON.stringify({
         fileName: title,
