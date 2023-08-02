@@ -35,6 +35,10 @@ function displayError(error) {
 
 async function creteFormSheet(title, formPath) {
   try {
+    const sheetsJsonArray = [
+      { name: "helix-default", data: [["A1", "B1"], ["A2", "B2"]] },
+      { name: "incoming", data: [["C1", "D1"], ["C2", "D2"]] },
+    ];
     const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
       method: "POST",
       headers: {
@@ -43,6 +47,7 @@ async function creteFormSheet(title, formPath) {
       },
       body: JSON.stringify({
         fileName: title,
+        data: sheetsJsonArray,
         parentFolderId: "1FXVZK1KrI7rEVUZ5kbCqSz4at-HHaYTI",
       }),
     });
