@@ -13,6 +13,13 @@
         "environments": ["edit"],
         "isPalette": true,
         "paletteRect": "top: auto; bottom: 25px; left: 5px; width: 300px; height: calc(100% - 200px); border-radius: var(--hlx-sk-button-border-radius); overflow: hidden; resize: horizontal;"
+      },
+      {
+        "id": "form-create2",
+        "title": "Create Form2",
+        "url": "/tools/sidekick/formbuilder.html",
+        "environments": ["edit"],
+        "passConfig": true
       }
     ]
   }
