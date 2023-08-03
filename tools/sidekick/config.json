@@ -19,7 +19,8 @@
         "title": "Create Form2",
         "url": "/tools/sidekick/formbuilder.html",
         "environments": ["edit"],
-        "passConfig": true
+        "passConfig": true,
+        "passReferrer": true
       }
     ]
   }
