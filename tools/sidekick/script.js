@@ -6,6 +6,31 @@ const LOCAL_HOST_URL = "http://localhost:3001";
 const REMOTE_HOST_URL = window.Location.name.includes("localhost")
   ? LOCAL_HOST_URL
   : "http://no1010042040188.corp.adobe.com:3001";
+
+window.onload = async function () {
+  // check if url params contains request type edit form
+  const urlParams = new URLSearchParams(window.location.search);
+  const type = urlParams.get("action");
+  if (type != null && type === "edit") {
+    const ref = urlParams.get("ref");
+    const repo = urlParams.get("repo");
+    const owner = urlParams.get("owner");
+    const referrer = urlParams.get("referrer");
+
+    const sitePage = await getSitePageFromPath(owner, repo, ref, referrer);
+    //open sitepage in new tab
+    window.open(sitePage, "_blank");
+  }
+};
+
+async function getSitePageFromPath(userName, project, ref, docURL) {
+  const helixStatusResponse = await fetch(
+    `https://admin.hlx.page/status/${userName}/${project}/${ref}?editUrl=${docURL}`
+  );
+  const helixStatusResponseJson = await helixStatusResponse.json();
+  return helixStatusResponseJson.preview.url;
+}
+
 document
   .getElementById("formBuilderForm")
   .addEventListener("submit", function (event) {
@@ -36,8 +61,20 @@ function displayError(error) {
 async function creteFormSheet(title, formPath) {
   try {
     const sheetsJsonArray = [
-      { name: "helix-default", data: [["A1", "B1"], ["A2", "B2"]] },
-      { name: "incoming", data: [["C1", "D1"], ["C2", "D2"]] },
+      {
+        name: "helix-default",
+        data: [
+          ["A1", "B1"],
+          ["A2", "B2"],
+        ],
+      },
+      {
+        name: "incoming",
+        data: [
+          ["C1", "D1"],
+          ["C2", "D2"],
+        ],
+      },
     ];
     const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
       method: "POST",

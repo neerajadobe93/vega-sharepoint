@@ -1,8 +1,8 @@
 {
     "plugins": [
       {
-        "id": "form-editor",
-        "title": "Form Editor",
+        "id": "form-editor-preview",
+        "title": "Edit Form",
         "event": "editform",
         "environments": ["preview"]
       },
@@ -15,9 +15,9 @@
         "paletteRect": "top: auto; bottom: 25px; left: 5px; width: 300px; height: calc(100% - 200px); border-radius: var(--hlx-sk-button-border-radius); overflow: hidden; resize: horizontal;"
       },
       {
-        "id": "form-create2",
-        "title": "Create Form2",
-        "url": "/tools/sidekick/formbuilder.html",
+        "id": "form-editor-edit",
+        "title": "Edit Form",
+        "url": "/tools/sidekick/formbuilder.html?action=edit",
         "environments": ["edit"],
         "passConfig": true,
         "passReferrer": true
