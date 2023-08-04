@@ -1,6 +1,7 @@
 const errorContainer = document.getElementById("errorContainer");
 const tableContainer = document.getElementById("tableContainer");
-const spinner = document.getElementById("spinner");
+const spinner = document.getElementById("cover-spin");
+const spinnerText = document.querySelector("#cover-spin span");
 const TOKEN = localStorage.getItem("accessToken") || "";
 const LOCAL_HOST_URL = "http://localhost:3001";
 const REMOTE_HOST_URL = window.Location.name.includes("localhost")
@@ -12,6 +13,8 @@ window.onload = async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get("action");
   if (type != null && type === "edit") {
+    spinnerText.textContent = "Opening UE";
+    spinner.style.display = "block";
     const ref = urlParams.get("ref");
     const repo = urlParams.get("repo");
     const owner = urlParams.get("owner");
@@ -19,7 +22,11 @@ window.onload = async function () {
 
     const sitePage = await getSitePageFromPath(owner, repo, ref, referrer);
     //open sitepage in new tab
-    window.open(sitePage, "_blank");
+    const imsOrgId = "@formsinternal01";
+    const editorUrl = `https://experience.adobe.com/#/${imsOrgId}/aem/editor/canvas/${sitePage}`;
+
+    window.open(editorUrl, "_blank");
+    spinner.style.display = "none";
   }
 };
 
@@ -37,6 +44,7 @@ document
     event.preventDefault();
     const title = document.getElementById("title").value;
     const formPath = document.getElementById("formPath").value;
+    spinnerText.textContent = "Creating Form";
     spinner.style.display = "block";
 
     creteFormSheet(title, formPath)
