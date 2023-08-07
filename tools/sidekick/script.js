@@ -35,7 +35,8 @@ async function getSitePageFromPath(userName, project, ref, docURL) {
     `https://admin.hlx.page/status/${userName}/${project}/${ref}?editUrl=${docURL}`
   );
   const helixStatusResponseJson = await helixStatusResponse.json();
-  return helixStatusResponseJson.preview.url;
+  const previewURL = helixStatusResponseJson.preview.url;
+  return new URL(previewURL).hostname;
 }
 
 document

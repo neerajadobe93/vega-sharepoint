@@ -21,6 +21,8 @@
       "environments": ["edit"],
       "passConfig": true,
       "passReferrer": true,
+      "isPalette": true,
+      "paletteRect": "top: auto; bottom: 25px; left: 5px; width: 300px; height: calc(100% - 200px); border-radius: var(--hlx-sk-button-border-radius); overflow: hidden; resize: horizontal;display:none;",
       "includePaths": ["**.docx**"]
     }
   ]
