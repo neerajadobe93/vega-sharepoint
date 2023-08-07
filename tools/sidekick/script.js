@@ -72,16 +72,39 @@ async function creteFormSheet(title, formPath) {
       {
         name: "helix-default",
         data: [
-          ["A1", "B1"],
-          ["A2", "B2"],
+          {
+            Name: "Question-1",
+            Type: "text",
+            Label: "Name",
+            Placeholder: "Enter your text here",
+            Mandatory: "false",
+          },
+          {
+            Name: "Question-2",
+            Type: "text",
+            Label: "Email",
+            Placeholder: "Enter your text here",
+            Mandatory: "false",
+          },
+          {
+            Name: "Question-3",
+            Type: "text",
+            Label: "Choice",
+            Placeholder: "Enter your text here",
+            Mandatory: "false",
+          },
+          {
+            Name: "submit",
+            Type: "submit",
+            Label: "Submit",
+            Placeholder: "",
+            Mandatory: "",
+          },
         ],
       },
       {
         name: "incoming",
-        data: [
-          ["C1", "D1"],
-          ["C2", "D2"],
-        ],
+        data: [["Name", "Type", "Label", "Placeholder", "Mandatory"]],
       },
     ];
     const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
