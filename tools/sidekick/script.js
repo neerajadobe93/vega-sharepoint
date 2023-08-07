@@ -130,7 +130,11 @@ function displayTable(title) {
         rowIndex === 0
           ? document.createElement("th")
           : document.createElement("td");
-      cell.textContent = cellData;
+      if (rowIndex === 1) {
+        cell.innerHTML = `<a href="${cellData}" target="_blank">${cellData}</a>`;
+      } else {
+        cell.textContent = cellData;
+      }
       row.appendChild(cell);
     });
     generatedTable.appendChild(row);
