@@ -36,7 +36,7 @@ async function getSitePageFromPath(userName, project, ref, docURL) {
   );
   const helixStatusResponseJson = await helixStatusResponse.json();
   const previewURL = helixStatusResponseJson.preview.url;
-  return new URL(previewURL).hostname;
+  return previewURL.replace("https://", "");
 }
 
 document
