@@ -50,7 +50,12 @@ button {
   border: 1px solid #ccc;
 }
 
+.copyBlock{
+  text-align: center;
+}
+
 #copyToClipboardBtn {
+  margin-top: 50px;
   padding: 10px 20px;
   background-color: #008cba;
   color: #fff;
