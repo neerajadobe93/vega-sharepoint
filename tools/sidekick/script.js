@@ -73,9 +73,9 @@ async function creteFormSheet(title, formPath) {
         name: "helix-default",
         data: [
           ["Name", "Type", "Label", "Placeholder", "Mandatory"],
-          ["Question-1", "text", "Name", "Enter your text here", "false"],
-          ["Question-2", "text", "Email", "Enter your text here", "false"],
-          ["Question-3", "text", "Choice", "Enter your text here", "false"],
+          ["Question-1", "text", "Name", "Enter your Name here", "false"],
+          ["Question-2", "text", "Email", "Enter your Email here", "true"],
+          ["Question-3", "text", "Comments", "Enter your text here", "false"],
           ["submit", "submit", "Submit", "", ""],
         ],
       },

@@ -171,7 +171,7 @@ input::file-selector-button {
 
 main .form button {
   color: var(--form-button-color);
-  background: blanchedalmond;
+  background: palevioletred;
   border: var(--form-button-border);
   padding: var(--form-button-padding);
   font-size: var(--form-button-font-size);
