@@ -1,28 +1,27 @@
 {
-    "plugins": [
-      {
-        "id": "form-editor-preview",
-        "title": "Edit Form",
-        "event": "editform",
-        "environments": ["preview"]
-      },
-      {
-        "id": "form-create",
-        "title": "Create Form",
-        "url": "/tools/sidekick/formbuilder.html",
-        "environments": ["edit"],
-        "isPalette": true,
-        "paletteRect": "top: auto; bottom: 25px; left: 5px; width: 300px; height: calc(100% - 200px); border-radius: var(--hlx-sk-button-border-radius); overflow: hidden; resize: horizontal;"
-      },
-      {
-        "id": "form-editor-edit",
-        "title": "Edit Form",
-        "url": "/tools/sidekick/formbuilder.html?action=edit",
-        "environments": ["edit"],
-        "isPalette": false,
-        "paletteRect": "top: auto; bottom: 25px; left: 5px; width: 300px; height: calc(100% - 200px); border-radius: var(--hlx-sk-button-border-radius); overflow: hidden; resize: horizontal;display:none;",  
-        "passConfig": true,
-        "passReferrer": true
-      }
-    ]
-  }
+  "plugins": [
+    {
+      "id": "form-editor-preview",
+      "title": "Edit Form",
+      "event": "editform",
+      "environments": ["preview"]
+    },
+    {
+      "id": "form-creator",
+      "title": "Create Form",
+      "url": "/tools/sidekick/formbuilder.html",
+      "environments": ["edit"],
+      "passConfig": true,
+      "passReferrer": true
+    },
+    {
+      "id": "form-editor-docx",
+      "title": "Edit Form",
+      "url": "/tools/sidekick/formbuilder.html?action=edit",
+      "environments": ["edit"],
+      "passConfig": true,
+      "passReferrer": true,
+      "includePaths": ["**.docx**"]
+    }
+  ]
+}
