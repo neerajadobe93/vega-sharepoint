@@ -53,6 +53,7 @@ async function getParentFolderPath(userName, project, ref, docURL) {
   parentFolderId = urlParts[urlParts.length - 1];
   const url = helixStatusResponseJson.preview.url;
   path = new URL(url).pathname.substring(0);
+}
 
 document
   .getElementById("formBuilderForm")
@@ -95,7 +96,7 @@ async function creteFormSheet(title) {
         branch: ref,
         username: owner,
         project: repo,
-        path: path
+        path: path,
       }),
     });
 
