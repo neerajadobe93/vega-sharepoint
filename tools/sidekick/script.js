@@ -47,7 +47,7 @@ async function getParentFolderPath(userName, project, ref, docURL) {
     `https://admin.hlx.page/status/${userName}/${project}/${ref}?editUrl=${docURL}`
   );
   const helixStatusResponseJson = await helixStatusResponse.json();
-  const parentFolderURL = helixStatusResponseJson.edit.folders[0].url
+  const parentFolderURL = helixStatusResponseJson.edit.folders[0].url;
   var urlParts = parentFolderURL.split("/");
   parentFolderId = urlParts[urlParts.length - 1];
 }
@@ -57,11 +57,10 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
     const title = document.getElementById("title").value;
-    const formPath = document.getElementById("formPath").value;
     spinnerText.textContent = "Creating Form";
     spinner.style.display = "block";
 
-    creteFormSheet(title, formPath)
+    creteFormSheet(title)
       .then((response) => {
         console.log("Form created successfully");
         displayTable(title);
@@ -80,38 +79,8 @@ function displayError(error) {
   tableContainer.style.display = "none";
 }
 
-async function creteFormSheet(title, formPath) {
+async function creteFormSheet(title) {
   try {
-    const formJson = [
-      {
-        Name: "Question-1",
-        Type: "text",
-        Label: "Name",
-        Placeholder: "Enter your text here",
-        Mandatory: "false",
-      },
-      {
-        Name: "Question-2",
-        Type: "text",
-        Label: "Email",
-        Placeholder: "Enter your Email here",
-        Mandatory: "false",
-      },
-      {
-        Name: "Question-3",
-        Type: "text",
-        Label: "Comments",
-        Placeholder: "Any Comments ?",
-        Mandatory: "false",
-      },
-      {
-        Name: "submit",
-        Type: "submit",
-        Label: "Submit",
-        Placeholder: "",
-        Mandatory: "",
-      },
-    ];
     const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
       method: "POST",
       headers: {
