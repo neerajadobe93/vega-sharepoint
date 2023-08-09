@@ -68,8 +68,7 @@ document
     creteFormSheet(title)
       .then((response) => {
         console.log("Form created successfully");
-        const responseJson = JSON.parse(response);
-        const formURL = `${domain}/${responseJson.path}`;
+        const formURL = `${domain}/${response.path}`;
         displayTable(formURL);
       })
       .catch((error) => {
