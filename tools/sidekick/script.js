@@ -52,7 +52,7 @@ async function getParentFolderPath(userName, project, ref, docURL) {
   var urlParts = parentFolderURL.split("/");
   parentFolderId = urlParts[urlParts.length - 1];
   const url = helixStatusResponseJson.preview.url;
-  path = new URL(url).pathname.substring(0);
+  path = new URL(url).pathname.substring(1);
 }
 
 document
