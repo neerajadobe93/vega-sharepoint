@@ -47,7 +47,7 @@ async function getParentFolderPath(userName, project, ref, docURL) {
     `https://admin.hlx.page/status/${userName}/${project}/${ref}?editUrl=${docURL}`
   );
   const helixStatusResponseJson = await helixStatusResponse.json();
-  const parentFolderURL = helixStatusResponseJson.edit.folders.url;
+  const parentFolderURL = helixStatusResponseJson.edit.folders[0].url
   var urlParts = parentFolderURL.split("/");
   parentFolderId = urlParts[urlParts.length - 1];
 }
