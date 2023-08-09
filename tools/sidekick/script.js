@@ -16,6 +16,7 @@ const repo = urlParams.get("repo");
 const owner = urlParams.get("owner");
 const referrer = urlParams.get("referrer");
 let path = "";
+let domain = "";
 
 window.onload = async function () {
   // check if url params contains request type edit form
@@ -53,6 +54,7 @@ async function getParentFolderPath(userName, project, ref, docURL) {
   parentFolderId = urlParts[urlParts.length - 1];
   const url = helixStatusResponseJson.preview.url;
   path = new URL(url).pathname.substring(1);
+  domain = new URL(url).hostname;
 }
 
 document
@@ -66,7 +68,9 @@ document
     creteFormSheet(title)
       .then((response) => {
         console.log("Form created successfully");
-        displayTable(title);
+        const responseJson = JSON.parse(response);
+        const formURL = `${domain}/${responseJson.path}`;
+        displayTable(formURL);
       })
       .catch((error) => {
         displayError(error);
@@ -113,12 +117,9 @@ async function creteFormSheet(title) {
   }
 }
 
-function displayTable(title) {
+function displayTable(formURL) {
   errorContainer.style.display = "none";
-  const tableData = [
-    ["Form"],
-    [`https://main--testingngg--neerajadobe93.hlx.page/forms/${title}.json`],
-  ];
+  const tableData = [["Form"], [formURL]];
 
   const generatedTable = document.getElementById("generatedTable");
 
