@@ -68,7 +68,7 @@ document
     creteFormSheet(title)
       .then((response) => {
         console.log("Form created successfully");
-        const formURL = `${domain}/${response.path}`;
+        const formURL = `https://${domain}/${response.path}`;
         displayTable(formURL);
       })
       .catch((error) => {
