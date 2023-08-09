@@ -9,15 +9,16 @@ const REMOTE_HOST_URL = window.Location.name.includes("localhost")
   : "http://no1010042040188.corp.adobe.com:3001";
 
 let parentFolderId = "";
+const urlParams = new URLSearchParams(window.location.search);
+const type = urlParams.get("action");
+const ref = urlParams.get("ref");
+const repo = urlParams.get("repo");
+const owner = urlParams.get("owner");
+const referrer = urlParams.get("referrer");
+let path = "";
 
 window.onload = async function () {
   // check if url params contains request type edit form
-  const urlParams = new URLSearchParams(window.location.search);
-  const type = urlParams.get("action");
-  const ref = urlParams.get("ref");
-  const repo = urlParams.get("repo");
-  const owner = urlParams.get("owner");
-  const referrer = urlParams.get("referrer");
   if (type != null && type === "edit") {
     spinnerText.textContent = "Opening UE";
     spinner.style.display = "block";
@@ -50,7 +51,8 @@ async function getParentFolderPath(userName, project, ref, docURL) {
   const parentFolderURL = helixStatusResponseJson.edit.folders[0].url;
   var urlParts = parentFolderURL.split("/");
   parentFolderId = urlParts[urlParts.length - 1];
-}
+  const url = helixStatusResponseJson.preview.url;
+  path = new URL(url).pathname.substring(0);
 
 document
   .getElementById("formBuilderForm")
@@ -90,6 +92,10 @@ async function creteFormSheet(title) {
       body: JSON.stringify({
         name: title,
         parentFolderId: parentFolderId,
+        branch: ref,
+        username: owner,
+        project: repo,
+        path: path
       }),
     });
 
