@@ -8,18 +8,19 @@ const REMOTE_HOST_URL = window.Location.name.includes("localhost")
   ? LOCAL_HOST_URL
   : "http://no1010042040188.corp.adobe.com:3001";
 
+let parentFolderId = "";
+
 window.onload = async function () {
   // check if url params contains request type edit form
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get("action");
+  const ref = urlParams.get("ref");
+  const repo = urlParams.get("repo");
+  const owner = urlParams.get("owner");
+  const referrer = urlParams.get("referrer");
   if (type != null && type === "edit") {
     spinnerText.textContent = "Opening UE";
     spinner.style.display = "block";
-    const ref = urlParams.get("ref");
-    const repo = urlParams.get("repo");
-    const owner = urlParams.get("owner");
-    const referrer = urlParams.get("referrer");
-
     const sitePage = await getSitePageFromPath(owner, repo, ref, referrer);
     //open sitepage in new tab
     const imsOrgId = "@formsinternal01";
@@ -27,6 +28,8 @@ window.onload = async function () {
 
     window.open(editorUrl, "_blank");
     spinner.style.display = "none";
+  } else {
+    await getParentFolderPath(owner, repo, ref, referrer);
   }
 };
 
@@ -37,6 +40,16 @@ async function getSitePageFromPath(userName, project, ref, docURL) {
   const helixStatusResponseJson = await helixStatusResponse.json();
   const previewURL = helixStatusResponseJson.preview.url;
   return previewURL.replace("https://", "");
+}
+
+async function getParentFolderPath(userName, project, ref, docURL) {
+  const helixStatusResponse = await fetch(
+    `https://admin.hlx.page/status/${userName}/${project}/${ref}?editUrl=${docURL}`
+  );
+  const helixStatusResponseJson = await helixStatusResponse.json();
+  const parentFolderURL = helixStatusResponseJson.edit.folders.url;
+  var urlParts = parentFolderURL.split("/");
+  parentFolderId = urlParts[urlParts.length - 1];
 }
 
 document
@@ -106,9 +119,8 @@ async function creteFormSheet(title, formPath) {
         accesstoken: TOKEN,
       },
       body: JSON.stringify({
-        fileName: title,
-        formJson: formJson,
-        parentFolderId: "1FXVZK1KrI7rEVUZ5kbCqSz4at-HHaYTI",
+        name: title,
+        parentFolderId: parentFolderId,
       }),
     });
 
