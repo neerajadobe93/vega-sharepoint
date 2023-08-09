@@ -69,20 +69,34 @@ function displayError(error) {
 
 async function creteFormSheet(title, formPath) {
   try {
-    const sheetsJsonArray = [
+    const formJson = [
       {
-        name: "helix-default",
-        data: [
-          ["Name", "Type", "Label", "Placeholder", "Mandatory"],
-          ["Question-1", "text", "Name", "Enter your Name here", "false"],
-          ["Question-2", "text", "Email", "Enter your Email here", "true"],
-          ["Question-3", "text", "Comments", "Enter your text here", "false"],
-          ["submit", "submit", "Submit", "", ""],
-        ],
+        Name: "Question-1",
+        Type: "text",
+        Label: "Name",
+        Placeholder: "Enter your text here",
+        Mandatory: "false",
       },
       {
-        name: "incoming",
-        data: [["Name", "Question-1", "Question-2", "Question-3"]],
+        Name: "Question-2",
+        Type: "text",
+        Label: "Email",
+        Placeholder: "Enter your Email here",
+        Mandatory: "false",
+      },
+      {
+        Name: "Question-3",
+        Type: "text",
+        Label: "Comments",
+        Placeholder: "Any Comments ?",
+        Mandatory: "false",
+      },
+      {
+        Name: "submit",
+        Type: "submit",
+        Label: "Submit",
+        Placeholder: "",
+        Mandatory: "",
       },
     ];
     const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
@@ -93,7 +107,7 @@ async function creteFormSheet(title, formPath) {
       },
       body: JSON.stringify({
         fileName: title,
-        data: sheetsJsonArray,
+        data: formJson,
         parentFolderId: "1FXVZK1KrI7rEVUZ5kbCqSz4at-HHaYTI",
       }),
     });
