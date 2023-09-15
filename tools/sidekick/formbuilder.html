@@ -8,7 +8,15 @@
     <h1>Form Builder</h1>
     <form id="formBuilderForm">
       <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required />
+      <input type="text" id="title" name="title" placeholder="Title of form excel" required />
+      <br />
+      <select id="template" name="template" style="height: 25px;">
+        <option value="">Select Template</option> 
+        <option value="sample">Sample</option>
+      </select>
+      <br />
+      
+      <input type="accesstoken" id="token" name="AccessToken" placeholder="Enter AccessToken(Dev)" required />
       <br />
       <button type="submit">Build Form</button>
     </form>

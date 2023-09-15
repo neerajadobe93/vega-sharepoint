@@ -2,10 +2,12 @@ const errorContainer = document.getElementById("errorContainer");
 const tableContainer = document.getElementById("tableContainer");
 const spinner = document.getElementById("cover-spin");
 const spinnerText = document.querySelector("#cover-spin span");
+const GTOKEN = localStorage.getItem("gaccessToken") || "";
+const STOKEN = localStorage.getItem("saccessToken") || "";
 const LOCAL_HOST_URL = "http://localhost:3001";
 const REMOTE_HOST_URL = window.Location.name.includes("localhost")
   ? LOCAL_HOST_URL
-  : "https://adobeioruntime.net/api/v1/web/283250-121azuretiger/helix-services/forms-manager@1.4.9";
+  : "http://no1010042040188.corp.adobe.com:3001";
 
 let parentFolderId = "";
 const urlParams = new URLSearchParams(window.location.search);
@@ -30,7 +32,7 @@ window.onload = async function () {
     window.open(editorUrl, "_blank");
     spinner.style.display = "none";
   } else {
-    // await getParentFolderPath(owner, repo, ref, referrer);
+    await getParentFolderPath(owner, repo, ref, referrer);
   }
 };
 
@@ -67,7 +69,7 @@ document
     createFormSheet(title)
       .then((response) => {
         console.log("Form created successfully");
-        const formURL = response.form;
+        const formURL = `https://${domain}/${response.path}`;
         displayTable(formURL);
       })
       .catch((error) => {
@@ -85,35 +87,23 @@ function displayError(error) {
 }
 
 async function createFormSheet(title) {
-  if (GTOKEN === "" && STOKEN === "") {
-    alert("Please login to continue");
-    return;
-  }
-  var selectElement = document.getElementById("template");
-  var template = selectElement.value;
-
-  const url = new URL(window.location.href);
-  const ref = url.searchParams.get("ref");
-  const repo = url.searchParams.get("repo");
-  const owner = url.searchParams.get("owner");
-  const referrer = url.searchParams.get("referrer");
-  const token = document.getElementById("token").value;
+  
   try {
-    const response = await fetch(
-      `${REMOTE_HOST_URL}/createform/${owner}/${repo}/${ref}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Service-Token": token,
-        },
-        body: JSON.stringify({
-          title: title,
-          template: template,
-          pageRef: referrer,
-        }),
-      }
-    );
+    const response = await fetch(`${REMOTE_HOST_URL}/createform`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Service-Token": GTOKEN,
+      },
+      body: JSON.stringify({
+        name: title,
+        parentFolderId: parentFolderId,
+        branch: ref,
+        username: owner,
+        project: repo,
+        path: path,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error(
