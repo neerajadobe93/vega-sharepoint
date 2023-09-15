@@ -85,10 +85,6 @@ function displayError(error) {
 }
 
 async function createFormSheet(title) {
-  if (GTOKEN === "" && STOKEN === "") {
-    alert("Please login to continue");
-    return;
-  }
   var selectElement = document.getElementById("template");
   var template = selectElement.value;
 
